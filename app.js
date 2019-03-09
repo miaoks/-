@@ -35,5 +35,27 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  // 请求函数
+  request({url,data}){
+  return new Promise(function(resolve,reject){
+      wx.request({
+        url,
+        data,
+        header: {
+          'content-type': 'json'
+        },
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+          resolve(res)
+         },
+        fail: function (err) {
+          reject(err)
+         },
+        complete: function (res) { },
+      })
+    })
   }
 })
